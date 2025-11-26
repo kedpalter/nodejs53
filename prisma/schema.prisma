@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/common/prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Articles {
+  id        Int      @id @default(autoincrement())
+  title     String?  @db.VarChar(255)
+  content   String?  @db.Text
+  imageUrl  String?  @db.VarChar(255)
+  views     Int      @default(0)
+  userId    Int
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+  Users     Users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Articles_ibfk_1")
+
+  @@index([userId], map: "userId")
+}
+
+model Foods {
+  food_id     Int      @id @default(autoincrement())
+  name        String?  @db.VarChar(255)
+  description String?  @default("Chưa có thông tin") @db.VarChar(255)
+  Orders      Orders[]
+}
+
+model Orders {
+  id     Int    @id @default(autoincrement())
+  userId Int?
+  foodId Int?
+  Users  Users? @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
+  Foods  Foods? @relation(fields: [foodId], references: [food_id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
+
+  @@index([foodId], map: "foodId")
+  @@index([userId], map: "userId")
+}
+
+model TABLE_TEMPLATE {
+  id        Int      @id @default(autoincrement())
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+}
+
+model Users {
+  id       Int        @id @default(autoincrement())
+  fullName String?    @db.VarChar(255)
+  email    String?    @db.VarChar(255)
+  avatar   String?    @db.VarChar(255)
+  password String?    @db.VarChar(255)
+  Articles Articles[]
+  Orders   Orders[]
+}
