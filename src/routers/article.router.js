@@ -3,4 +3,6 @@ import { articleController } from '../controllers/article.controller.js'
 
 export const articleRouter = express.Router()
 
-articleRouter.get('/get-list-article', articleController.findAll) // not findAll()
+articleRouter.get('/', articleController.findAll) // not findAll()
+articleRouter.get("/:id", articleController.findOne)
+articleRouter.delete("/:id", articleController.delete)

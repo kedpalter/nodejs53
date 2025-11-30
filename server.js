@@ -2,10 +2,15 @@
 // const express = require("express") // commonjs (old)
 import express from "express" // module (new)
 import { rootRouter } from "./src/routers/root.router.js";
+import cors from "cors"
 
 rootRouter
 
 const app = express();
+
+app.use(cors({
+    origin: ["http://localhost:3000"]
+}))
 
 app.use('/api', rootRouter)
 
