@@ -1,17 +1,19 @@
-import "../constant/app.constant.js"
-import "dotenv/config";
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+import "dotenv/config";
+import "../constant/app.constant.js";
+import { DATABASE_URL } from "../constant/app.constant.js";
 import { PrismaClient } from './generated/prisma/index.js';
-import { DATABASE_HOST, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USER } from "../constant/app.constant.js";
+
+const url = new URL(DATABASE_URL)
 
 const adapter = new PrismaMariaDb({
-    host: DATABASE_HOST,
-    user: DATABASE_USER,
-    password: DATABASE_PASSWORD,
-    database: DATABASE_NAME,
-    port: DATABASE_PORT,
+    host: url.hostname,
+    user: url.username,
+    password: url.password,
+    database: url.pathname.substring(1), // include "/..." → substring(1)
+    port: url.port,
     connectionLimit: 5
 });
 const prisma = new PrismaClient({ adapter });
 
-export { prisma }
+export { prisma };

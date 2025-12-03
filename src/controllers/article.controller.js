@@ -11,11 +11,21 @@ export const articleController = {
     async findOne(req, res, next) {
         const result = await articleService.findOne(req)
         const response = responseSuccess(result, "Get detail article success");
-        res.json(response) // res.status(201).json
+        res.json(response)
     },
     async delete(req, res, next) {
         const result = await articleService.delete(req)
         const response = responseSuccess(result, "Delete article success");
-        res.json(response) // res.status(201).json
-    }
+        res.json(response)
+    },
+    async create(req, res, next) {
+        const result = await articleService.create(req)
+        const response = responseSuccess(result, "Create article success");
+        res.json(response)
+    },
+    async update(req, res, next) {
+        const result = await articleService.create(req)
+        const response = responseSuccess(result, "Update article success");
+        res.json(response)
+    },
 }

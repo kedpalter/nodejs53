@@ -8,6 +8,7 @@ rootRouter
 
 const app = express();
 
+app.use(express.json()) // Để trước router để express tự động chuyển file JSON body
 app.use(cors({
     origin: ["http://localhost:3000"]
 }))
