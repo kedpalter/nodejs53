@@ -3,6 +3,7 @@
 import express from "express" // module (new)
 import { rootRouter } from "./src/routers/root.router.js";
 import cors from "cors"
+import { appError } from "./src/common/helpers/handle-error.helper.js";
 
 rootRouter
 
@@ -14,14 +15,7 @@ app.use(cors({
 }))
 
 app.use('/api', rootRouter)
-
-app.get("/hello", (req, res, next) => {
-    
-    res.json({
-        message: "Hello World !"
-    });
-
-});
+app.use(appError)
 
 const port = 3069;
 app.listen(port, () => {

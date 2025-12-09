@@ -1,0 +1,162 @@
+{
+	// Place your cassini-community workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	// BE - ExpressJS CURD
+	"Express CRUD Routes": {
+		"scope": "javascript, javascriptreact, typescriptreact, typescript",
+		"prefix": "express-router-crud",
+		"body": [
+			"import express from 'express';",
+			"",
+			"const ${1:module}Router = express.Router();",
+			"",
+			"// Tạo route CRUD",
+			"${1:module}Router.post('/', ${1:module}Controller.create);",
+			"${1:module}Router.get('/', ${1:module}Controller.findAll);",
+			"${1:module}Router.get('/:id', ${1:module}Controller.findOne);",
+			"${1:module}Router.patch('/:id', ${1:module}Controller.update);",
+			"${1:module}Router.delete('/:id', ${1:module}Controller.remove);",
+			"",
+			"export default ${1:module}Router;"
+		],
+		"description": "Snippet for Express CRUD routes"
+	},
+	"Express CRUD Controller": {
+		"scope": "javascript, javascriptreact, typescriptreact, typescript",
+		"prefix": "express-controller-crud",
+		"body": [
+			"export const ${1:module}Controller = {",
+			"   async create(req, res, next) {",
+			"      try {",
+			"         const result = await ${2:${1:module}Service}.create(req);",
+			"         const response = ${3:responseSuccess}(result, `Create ${1:module} successfully`);",
+			"         res.status(response.statusCode).json(response);",
+			"      } catch (err) {",
+			"         next(err);",
+			"      }",
+			"   },",
+			"",
+			"   async findAll(req, res, next) {",
+			"      try {",
+			"         const result = await ${1:module}Service.findAll(req);",
+			"         const response = responseSuccess(result, `Get all ${1:module}s successfully`);",
+			"         res.status(response.statusCode).json(response);",
+			"      } catch (err) {",
+			"         next(err);",
+			"      }",
+			"   },",
+			"",
+			"   async findOne(req, res, next) {",
+			"      try {",
+			"         const result = await ${1:module}Service.findOne(req);",
+			"         const response = responseSuccess(result, `Get ${1:module} #${req.params.id} successfully`);",
+			"         res.status(response.statusCode).json(response);",
+			"      } catch (err) {",
+			"         next(err);",
+			"      }",
+			"   },",
+			"",
+			"   async update(req, res, next) {",
+			"      try {",
+			"         const result = await ${1:module}Service.update(req);",
+			"         const response = responseSuccess(result, `Update ${1:module} #${req.params.id} successfully`);",
+			"         res.status(response.statusCode).json(response);",
+			"      } catch (err) {",
+			"         next(err);",
+			"      }",
+			"   },",
+			"",
+			"   async remove(req, res, next) {",
+			"      try {",
+			"         const result = await ${1:module}Service.remove(req);",
+			"         const response = responseSuccess(result, `Remove ${1:module} #${req.params.id} successfully`);",
+			"         res.status(response.statusCode).json(response);",
+			"      } catch (err) {",
+			"         next(err);",
+			"      }",
+			"   }",
+			"};"
+		],
+		"description": "Snippet for Express CRUD controller"
+	},
+	"Express V5 CRUD Controller": {
+		"scope": "javascript, javascriptreact, typescriptreact, typescript",
+		"prefix": "express-v5-controller-crud",
+		"body": [
+			"export const ${1:module}Controller = {",
+			"   async create(req, res, next) {",
+			"      const result = await ${2:${1:module}Service}.create(req);",
+			"      const response = ${3:responseSuccess}(result, `Create ${1:module} successfully`);",
+			"      res.status(response.statusCode).json(response);",
+			"   },",
+			"",
+			"   async findAll(req, res, next) {",
+			"      const result = await ${1:module}Service.findAll(req);",
+			"      const response = responseSuccess(result, `Get all ${1:module}s successfully`);",
+			"      res.status(response.statusCode).json(response);",
+			"   },",
+			"",
+			"   async findOne(req, res, next) {",
+			"      const result = await ${1:module}Service.findOne(req);",
+			"      const response = responseSuccess(result, `Get ${1:module} #${req.params.id} successfully`);",
+			"      res.status(response.statusCode).json(response);",
+			"   },",
+			"",
+			"   async update(req, res, next) {",
+			"      const result = await ${1:module}Service.update(req);",
+			"      const response = responseSuccess(result, `Update ${1:module} #${req.params.id} successfully`);",
+			"      res.status(response.statusCode).json(response);",
+			"   },",
+			"",
+			"   async remove(req, res, next) {",
+			"      const result = await ${1:module}Service.remove(req);",
+			"      const response = responseSuccess(result, `Remove ${1:module} #${req.params.id} successfully`);",
+			"      res.status(response.statusCode).json(response);",
+			"   }",
+			"};"
+		],
+		"description": "Snippet for Express CRUD controller (Express v5)"
+	},
+	"Express CRUD Service": {
+		"scope": "javascript, javascriptreact, typescriptreact, typescript",
+		"prefix": "express-service-crud",
+		"body": [
+			"export const ${1:module}Service = {",
+			"   async create(req) {",
+			"      return `This action create`;",
+			"   },",
+			"",
+			"   async findAll(req) {",
+			"      return `This action returns all ${1:module}`;",
+			"   },",
+			"",
+			"   async findOne(req) {",
+			"      return `This action returns a id: ${req.params.id} ${1:module}`;",
+			"   },",
+			"",
+			"   async update(req) {",
+			"      return `This action updates a id: ${req.params.id} ${1:module}`;",
+			"   },",
+			"",
+			"   async remove(req) {",
+			"      return `This action removes a id: ${req.params.id} ${1:module}`;",
+			"   }",
+			"};"
+		],
+		"description": "Snippet for Express CRUD service"
+	},
+}
