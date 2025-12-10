@@ -14,6 +14,16 @@ export const authController = {
       res.status(response.statusCode).json(response);
    },
 
+   async getInfo(req, res, next) {
+      const result = await authService.getInfo(req);
+      const response = responseSuccess(result, `getInfo auth successfully`);
+      res.status(response.statusCode).json(response);
+   },
+
+
+
+   
+   // ------------------------------------------
    async findAll(req, res, next) {
       const result = await authService.findAll(req);
       const response = responseSuccess(result, `Get all auths successfully`);

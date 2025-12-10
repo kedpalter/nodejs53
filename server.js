@@ -4,6 +4,7 @@ import express from "express" // module (new)
 import { rootRouter } from "./src/routers/root.router.js";
 import cors from "cors"
 import { appError } from "./src/common/helpers/handle-error.helper.js";
+import { NotFoundException } from "./src/common/helpers/exception.helper.js";
 
 rootRouter
 
@@ -15,6 +16,16 @@ app.use(cors({
 }))
 
 app.use('/api', rootRouter)
+
+// Xử lý khi có req từ bên ngoài ko đúng với route
+app.use((req, res, next) => {
+    const method = req.method;
+    const url= req.originalUrl;
+    const ip = req.ip;
+    console.log(method, url, ip)
+
+    throw new NotFoundException();
+}) 
 app.use(appError)
 
 const port = 3069;
