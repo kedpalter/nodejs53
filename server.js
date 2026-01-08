@@ -5,6 +5,7 @@ import { rootRouter } from "./src/routers/root.router.js";
 import cors from "cors"
 import { appError } from "./src/common/helpers/handle-error.helper.js";
 import { NotFoundException } from "./src/common/helpers/exception.helper.js";
+import { initGoogleStrategy } from "./src/common/passport/login-google.passport.js";
 
 rootRouter
 
@@ -12,8 +13,10 @@ const app = express();
 
 app.use(express.json()) // Để trước router để express tự động chuyển file JSON body
 app.use(cors({
-    origin: ["http://localhost:3000"]
+    origin: ["http://localhost:3000", "https://www.google.com"]
 }))
+
+initGoogleStrategy() // Chạy trước Strategy
 
 app.use('/api', rootRouter)
 

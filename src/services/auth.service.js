@@ -8,7 +8,7 @@ export const authService = {
     async register(req) {
         const { email, password, fullName } = req.body;
 
-        const userExist = await prisma.users.findUnique({
+        const userExist = await prisma.users.findFirst({
             where: {
                 email: email,
             }
@@ -39,7 +39,7 @@ export const authService = {
     async login(req) {
         const { email, password } = req.body;
         // Kiểm tra email người dùng có tồn tại chưa? Nếu có, đi tiếp, nếu không, chuyển qua đăng ký
-        const userExist = await prisma.users.findUnique({
+        const userExist = await prisma.users.findFirst({
             where: {
                 email: email,
             }
@@ -67,8 +67,9 @@ export const authService = {
     },
 
     async getInfo(req) {
+        
         console.log("get info service", req.user)
-        delete req.user.password
+        // delete req.user.password
         return req.user
     },
 
