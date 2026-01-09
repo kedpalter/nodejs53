@@ -133,15 +133,21 @@ exports.Prisma.ArticlesScalarFieldEnum = {
 };
 
 exports.Prisma.FoodsScalarFieldEnum = {
-  food_id: 'food_id',
+  id: 'id',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.OrdersScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  foodId: 'foodId'
+  foodId: 'foodId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TABLE_TEMPLATEScalarFieldEnum = {
@@ -153,10 +159,14 @@ exports.Prisma.TABLE_TEMPLATEScalarFieldEnum = {
 
 exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
-  fullName: 'fullName',
   email: 'email',
+  fullName: 'fullName',
   avatar: 'avatar',
-  password: 'password'
+  password: 'password',
+  googleId: 'googleId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -181,10 +191,11 @@ exports.Prisma.FoodsOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.UsersOrderByRelevanceFieldEnum = {
-  fullName: 'fullName',
   email: 'email',
+  fullName: 'fullName',
   avatar: 'avatar',
-  password: 'password'
+  password: 'password',
+  googleId: 'googleId'
 };
 
 

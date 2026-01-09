@@ -8,7 +8,7 @@ export const authService = {
     async register(req) {
         const { email, password, fullName } = req.body;
 
-        const userExist = await prisma.users.findFirst({
+        const userExist = await prisma.users.findUnique({
             where: {
                 email: email,
             }
@@ -39,7 +39,7 @@ export const authService = {
     async login(req) {
         const { email, password } = req.body;
         // Kiểm tra email người dùng có tồn tại chưa? Nếu có, đi tiếp, nếu không, chuyển qua đăng ký
-        const userExist = await prisma.users.findFirst({
+        const userExist = await prisma.users.findUnique({
             where: {
                 email: email,
             }
@@ -67,10 +67,22 @@ export const authService = {
     },
 
     async getInfo(req) {
-        
+
         console.log("get info service", req.user)
         // delete req.user.password
         return req.user
+    },
+
+    async googleCallback(req) {
+        console.log("user google", req.user);
+
+        const { accessToken, refreshToken } = tokenService.createTokens(req.user.id);
+        // console.log({ accessToken, refreshToken })
+
+        // truyền AT và RT trong query url của FE
+        // FE dùng hook useSearchParam() để lấy AT và RT
+        const urlRedirect = `http://localhost:3000/login-callback?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+        return urlRedirect
     },
 
     async create(req) {

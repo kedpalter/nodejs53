@@ -2268,57 +2268,75 @@ export namespace Prisma {
   }
 
   export type FoodsAvgAggregateOutputType = {
-    food_id: number | null
+    id: number | null
   }
 
   export type FoodsSumAggregateOutputType = {
-    food_id: number | null
+    id: number | null
   }
 
   export type FoodsMinAggregateOutputType = {
-    food_id: number | null
+    id: number | null
     name: string | null
     description: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type FoodsMaxAggregateOutputType = {
-    food_id: number | null
+    id: number | null
     name: string | null
     description: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type FoodsCountAggregateOutputType = {
-    food_id: number
+    id: number
     name: number
     description: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type FoodsAvgAggregateInputType = {
-    food_id?: true
+    id?: true
   }
 
   export type FoodsSumAggregateInputType = {
-    food_id?: true
+    id?: true
   }
 
   export type FoodsMinAggregateInputType = {
-    food_id?: true
+    id?: true
     name?: true
     description?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type FoodsMaxAggregateInputType = {
-    food_id?: true
+    id?: true
     name?: true
     description?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type FoodsCountAggregateInputType = {
-    food_id?: true
+    id?: true
     name?: true
     description?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -2409,9 +2427,12 @@ export namespace Prisma {
   }
 
   export type FoodsGroupByOutputType = {
-    food_id: number
+    id: number
     name: string | null
     description: string | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: FoodsCountAggregateOutputType | null
     _avg: FoodsAvgAggregateOutputType | null
     _sum: FoodsSumAggregateOutputType | null
@@ -2434,9 +2455,12 @@ export namespace Prisma {
 
 
   export type FoodsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    food_id?: boolean
+    id?: boolean
     name?: boolean
     description?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     Orders?: boolean | Foods$OrdersArgs<ExtArgs>
     _count?: boolean | FoodsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["foods"]>
@@ -2444,12 +2468,15 @@ export namespace Prisma {
 
 
   export type FoodsSelectScalar = {
-    food_id?: boolean
+    id?: boolean
     name?: boolean
     description?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type FoodsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"food_id" | "name" | "description", ExtArgs["result"]["foods"]>
+  export type FoodsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["foods"]>
   export type FoodsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Orders?: boolean | Foods$OrdersArgs<ExtArgs>
     _count?: boolean | FoodsCountOutputTypeDefaultArgs<ExtArgs>
@@ -2461,9 +2488,12 @@ export namespace Prisma {
       Orders: Prisma.$OrdersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      food_id: number
+      id: number
       name: string | null
       description: string | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["foods"]>
     composites: {}
   }
@@ -2547,8 +2577,8 @@ export namespace Prisma {
      * // Get first 10 Foods
      * const foods = await prisma.foods.findMany({ take: 10 })
      * 
-     * // Only select the `food_id`
-     * const foodsWithFood_idOnly = await prisma.foods.findMany({ select: { food_id: true } })
+     * // Only select the `id`
+     * const foodsWithIdOnly = await prisma.foods.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends FoodsFindManyArgs>(args?: SelectSubset<T, FoodsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2834,9 +2864,12 @@ export namespace Prisma {
    * Fields of the Foods model
    */
   interface FoodsFieldRefs {
-    readonly food_id: FieldRef<"Foods", 'Int'>
+    readonly id: FieldRef<"Foods", 'Int'>
     readonly name: FieldRef<"Foods", 'String'>
     readonly description: FieldRef<"Foods", 'String'>
+    readonly isDeleted: FieldRef<"Foods", 'Boolean'>
+    readonly createdAt: FieldRef<"Foods", 'DateTime'>
+    readonly updatedAt: FieldRef<"Foods", 'DateTime'>
   }
     
 
@@ -3250,18 +3283,27 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     foodId: number | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type OrdersMaxAggregateOutputType = {
     id: number | null
     userId: number | null
     foodId: number | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type OrdersCountAggregateOutputType = {
     id: number
     userId: number
     foodId: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -3282,18 +3324,27 @@ export namespace Prisma {
     id?: true
     userId?: true
     foodId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type OrdersMaxAggregateInputType = {
     id?: true
     userId?: true
     foodId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type OrdersCountAggregateInputType = {
     id?: true
     userId?: true
     foodId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3387,6 +3438,9 @@ export namespace Prisma {
     id: number
     userId: number | null
     foodId: number | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: OrdersCountAggregateOutputType | null
     _avg: OrdersAvgAggregateOutputType | null
     _sum: OrdersSumAggregateOutputType | null
@@ -3412,6 +3466,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     foodId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     Users?: boolean | Orders$UsersArgs<ExtArgs>
     Foods?: boolean | Orders$FoodsArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
@@ -3422,9 +3479,12 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     foodId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "foodId", ExtArgs["result"]["orders"]>
+  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "foodId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["orders"]>
   export type OrdersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Users?: boolean | Orders$UsersArgs<ExtArgs>
     Foods?: boolean | Orders$FoodsArgs<ExtArgs>
@@ -3440,6 +3500,9 @@ export namespace Prisma {
       id: number
       userId: number | null
       foodId: number | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["orders"]>
     composites: {}
   }
@@ -3814,6 +3877,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Orders", 'Int'>
     readonly userId: FieldRef<"Orders", 'Int'>
     readonly foodId: FieldRef<"Orders", 'Int'>
+    readonly isDeleted: FieldRef<"Orders", 'Boolean'>
+    readonly createdAt: FieldRef<"Orders", 'DateTime'>
+    readonly updatedAt: FieldRef<"Orders", 'DateTime'>
   }
     
 
@@ -5140,26 +5206,38 @@ export namespace Prisma {
 
   export type UsersMinAggregateOutputType = {
     id: number | null
-    fullName: string | null
     email: string | null
+    fullName: string | null
     avatar: string | null
     password: string | null
+    googleId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UsersMaxAggregateOutputType = {
     id: number | null
-    fullName: string | null
     email: string | null
+    fullName: string | null
     avatar: string | null
     password: string | null
+    googleId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UsersCountAggregateOutputType = {
     id: number
-    fullName: number
     email: number
+    fullName: number
     avatar: number
     password: number
+    googleId: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -5174,26 +5252,38 @@ export namespace Prisma {
 
   export type UsersMinAggregateInputType = {
     id?: true
-    fullName?: true
     email?: true
+    fullName?: true
     avatar?: true
     password?: true
+    googleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UsersMaxAggregateInputType = {
     id?: true
-    fullName?: true
     email?: true
+    fullName?: true
     avatar?: true
     password?: true
+    googleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UsersCountAggregateInputType = {
     id?: true
-    fullName?: true
     email?: true
+    fullName?: true
     avatar?: true
     password?: true
+    googleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -5285,10 +5375,14 @@ export namespace Prisma {
 
   export type UsersGroupByOutputType = {
     id: number
+    email: string
     fullName: string | null
-    email: string | null
     avatar: string | null
     password: string | null
+    googleId: string | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -5312,10 +5406,14 @@ export namespace Prisma {
 
   export type UsersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fullName?: boolean
     email?: boolean
+    fullName?: boolean
     avatar?: boolean
     password?: boolean
+    googleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     Articles?: boolean | Users$ArticlesArgs<ExtArgs>
     Orders?: boolean | Users$OrdersArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -5325,13 +5423,17 @@ export namespace Prisma {
 
   export type UsersSelectScalar = {
     id?: boolean
-    fullName?: boolean
     email?: boolean
+    fullName?: boolean
     avatar?: boolean
     password?: boolean
+    googleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "avatar" | "password", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "fullName" | "avatar" | "password" | "googleId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["users"]>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Articles?: boolean | Users$ArticlesArgs<ExtArgs>
     Orders?: boolean | Users$OrdersArgs<ExtArgs>
@@ -5346,10 +5448,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      email: string
       fullName: string | null
-      email: string | null
       avatar: string | null
       password: string | null
+      googleId: string | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -5722,10 +5828,14 @@ export namespace Prisma {
    */
   interface UsersFieldRefs {
     readonly id: FieldRef<"Users", 'Int'>
-    readonly fullName: FieldRef<"Users", 'String'>
     readonly email: FieldRef<"Users", 'String'>
+    readonly fullName: FieldRef<"Users", 'String'>
     readonly avatar: FieldRef<"Users", 'String'>
     readonly password: FieldRef<"Users", 'String'>
+    readonly googleId: FieldRef<"Users", 'String'>
+    readonly isDeleted: FieldRef<"Users", 'Boolean'>
+    readonly createdAt: FieldRef<"Users", 'DateTime'>
+    readonly updatedAt: FieldRef<"Users", 'DateTime'>
   }
     
 
@@ -5944,7 +6054,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Users.
      */
-    data?: XOR<UsersCreateInput, UsersUncheckedCreateInput>
+    data: XOR<UsersCreateInput, UsersUncheckedCreateInput>
   }
 
   /**
@@ -6165,9 +6275,12 @@ export namespace Prisma {
 
 
   export const FoodsScalarFieldEnum: {
-    food_id: 'food_id',
+    id: 'id',
     name: 'name',
-    description: 'description'
+    description: 'description',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type FoodsScalarFieldEnum = (typeof FoodsScalarFieldEnum)[keyof typeof FoodsScalarFieldEnum]
@@ -6176,7 +6289,10 @@ export namespace Prisma {
   export const OrdersScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    foodId: 'foodId'
+    foodId: 'foodId',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
@@ -6194,10 +6310,14 @@ export namespace Prisma {
 
   export const UsersScalarFieldEnum: {
     id: 'id',
-    fullName: 'fullName',
     email: 'email',
+    fullName: 'fullName',
     avatar: 'avatar',
-    password: 'password'
+    password: 'password',
+    googleId: 'googleId',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -6237,10 +6357,11 @@ export namespace Prisma {
 
 
   export const UsersOrderByRelevanceFieldEnum: {
-    fullName: 'fullName',
     email: 'email',
+    fullName: 'fullName',
     avatar: 'avatar',
-    password: 'password'
+    password: 'password',
+    googleId: 'googleId'
   };
 
   export type UsersOrderByRelevanceFieldEnum = (typeof UsersOrderByRelevanceFieldEnum)[keyof typeof UsersOrderByRelevanceFieldEnum]
@@ -6371,34 +6492,46 @@ export namespace Prisma {
     AND?: FoodsWhereInput | FoodsWhereInput[]
     OR?: FoodsWhereInput[]
     NOT?: FoodsWhereInput | FoodsWhereInput[]
-    food_id?: IntFilter<"Foods"> | number
+    id?: IntFilter<"Foods"> | number
     name?: StringNullableFilter<"Foods"> | string | null
     description?: StringNullableFilter<"Foods"> | string | null
+    isDeleted?: BoolFilter<"Foods"> | boolean
+    createdAt?: DateTimeFilter<"Foods"> | Date | string
+    updatedAt?: DateTimeFilter<"Foods"> | Date | string
     Orders?: OrdersListRelationFilter
   }
 
   export type FoodsOrderByWithRelationInput = {
-    food_id?: SortOrder
+    id?: SortOrder
     name?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     Orders?: OrdersOrderByRelationAggregateInput
     _relevance?: FoodsOrderByRelevanceInput
   }
 
   export type FoodsWhereUniqueInput = Prisma.AtLeast<{
-    food_id?: number
+    id?: number
     AND?: FoodsWhereInput | FoodsWhereInput[]
     OR?: FoodsWhereInput[]
     NOT?: FoodsWhereInput | FoodsWhereInput[]
     name?: StringNullableFilter<"Foods"> | string | null
     description?: StringNullableFilter<"Foods"> | string | null
+    isDeleted?: BoolFilter<"Foods"> | boolean
+    createdAt?: DateTimeFilter<"Foods"> | Date | string
+    updatedAt?: DateTimeFilter<"Foods"> | Date | string
     Orders?: OrdersListRelationFilter
-  }, "food_id">
+  }, "id">
 
   export type FoodsOrderByWithAggregationInput = {
-    food_id?: SortOrder
+    id?: SortOrder
     name?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: FoodsCountOrderByAggregateInput
     _avg?: FoodsAvgOrderByAggregateInput
     _max?: FoodsMaxOrderByAggregateInput
@@ -6410,9 +6543,12 @@ export namespace Prisma {
     AND?: FoodsScalarWhereWithAggregatesInput | FoodsScalarWhereWithAggregatesInput[]
     OR?: FoodsScalarWhereWithAggregatesInput[]
     NOT?: FoodsScalarWhereWithAggregatesInput | FoodsScalarWhereWithAggregatesInput[]
-    food_id?: IntWithAggregatesFilter<"Foods"> | number
+    id?: IntWithAggregatesFilter<"Foods"> | number
     name?: StringNullableWithAggregatesFilter<"Foods"> | string | null
     description?: StringNullableWithAggregatesFilter<"Foods"> | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Foods"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Foods"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Foods"> | Date | string
   }
 
   export type OrdersWhereInput = {
@@ -6422,6 +6558,9 @@ export namespace Prisma {
     id?: IntFilter<"Orders"> | number
     userId?: IntNullableFilter<"Orders"> | number | null
     foodId?: IntNullableFilter<"Orders"> | number | null
+    isDeleted?: BoolFilter<"Orders"> | boolean
+    createdAt?: DateTimeFilter<"Orders"> | Date | string
+    updatedAt?: DateTimeFilter<"Orders"> | Date | string
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     Foods?: XOR<FoodsNullableScalarRelationFilter, FoodsWhereInput> | null
   }
@@ -6430,6 +6569,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
     foodId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     Users?: UsersOrderByWithRelationInput
     Foods?: FoodsOrderByWithRelationInput
   }
@@ -6441,6 +6583,9 @@ export namespace Prisma {
     NOT?: OrdersWhereInput | OrdersWhereInput[]
     userId?: IntNullableFilter<"Orders"> | number | null
     foodId?: IntNullableFilter<"Orders"> | number | null
+    isDeleted?: BoolFilter<"Orders"> | boolean
+    createdAt?: DateTimeFilter<"Orders"> | Date | string
+    updatedAt?: DateTimeFilter<"Orders"> | Date | string
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     Foods?: XOR<FoodsNullableScalarRelationFilter, FoodsWhereInput> | null
   }, "id">
@@ -6449,6 +6594,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
     foodId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: OrdersCountOrderByAggregateInput
     _avg?: OrdersAvgOrderByAggregateInput
     _max?: OrdersMaxOrderByAggregateInput
@@ -6463,6 +6611,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Orders"> | number
     userId?: IntNullableWithAggregatesFilter<"Orders"> | number | null
     foodId?: IntNullableWithAggregatesFilter<"Orders"> | number | null
+    isDeleted?: BoolWithAggregatesFilter<"Orders"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
   }
 
   export type TABLE_TEMPLATEWhereInput = {
@@ -6519,20 +6670,28 @@ export namespace Prisma {
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
     id?: IntFilter<"Users"> | number
+    email?: StringFilter<"Users"> | string
     fullName?: StringNullableFilter<"Users"> | string | null
-    email?: StringNullableFilter<"Users"> | string | null
     avatar?: StringNullableFilter<"Users"> | string | null
     password?: StringNullableFilter<"Users"> | string | null
+    googleId?: StringNullableFilter<"Users"> | string | null
+    isDeleted?: BoolFilter<"Users"> | boolean
+    createdAt?: DateTimeFilter<"Users"> | Date | string
+    updatedAt?: DateTimeFilter<"Users"> | Date | string
     Articles?: ArticlesListRelationFilter
     Orders?: OrdersListRelationFilter
   }
 
   export type UsersOrderByWithRelationInput = {
     id?: SortOrder
+    email?: SortOrder
     fullName?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
+    googleId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     Articles?: ArticlesOrderByRelationAggregateInput
     Orders?: OrdersOrderByRelationAggregateInput
     _relevance?: UsersOrderByRelevanceInput
@@ -6540,23 +6699,31 @@ export namespace Prisma {
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    email?: string
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
     fullName?: StringNullableFilter<"Users"> | string | null
-    email?: StringNullableFilter<"Users"> | string | null
     avatar?: StringNullableFilter<"Users"> | string | null
     password?: StringNullableFilter<"Users"> | string | null
+    googleId?: StringNullableFilter<"Users"> | string | null
+    isDeleted?: BoolFilter<"Users"> | boolean
+    createdAt?: DateTimeFilter<"Users"> | Date | string
+    updatedAt?: DateTimeFilter<"Users"> | Date | string
     Articles?: ArticlesListRelationFilter
     Orders?: OrdersListRelationFilter
-  }, "id">
+  }, "id" | "email">
 
   export type UsersOrderByWithAggregationInput = {
     id?: SortOrder
+    email?: SortOrder
     fullName?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
+    googleId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _avg?: UsersAvgOrderByAggregateInput
     _max?: UsersMaxOrderByAggregateInput
@@ -6569,10 +6736,14 @@ export namespace Prisma {
     OR?: UsersScalarWhereWithAggregatesInput[]
     NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Users"> | number
+    email?: StringWithAggregatesFilter<"Users"> | string
     fullName?: StringNullableWithAggregatesFilter<"Users"> | string | null
-    email?: StringNullableWithAggregatesFilter<"Users"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"Users"> | string | null
     password?: StringNullableWithAggregatesFilter<"Users"> | string | null
+    googleId?: StringNullableWithAggregatesFilter<"Users"> | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Users"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Users"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Users"> | Date | string
   }
 
   export type ArticlesCreateInput = {
@@ -6658,47 +6829,71 @@ export namespace Prisma {
   export type FoodsCreateInput = {
     name?: string | null
     description?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Orders?: OrdersCreateNestedManyWithoutFoodsInput
   }
 
   export type FoodsUncheckedCreateInput = {
-    food_id?: number
+    id?: number
     name?: string | null
     description?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Orders?: OrdersUncheckedCreateNestedManyWithoutFoodsInput
   }
 
   export type FoodsUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Orders?: OrdersUpdateManyWithoutFoodsNestedInput
   }
 
   export type FoodsUncheckedUpdateInput = {
-    food_id?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Orders?: OrdersUncheckedUpdateManyWithoutFoodsNestedInput
   }
 
   export type FoodsCreateManyInput = {
-    food_id?: number
+    id?: number
     name?: string | null
     description?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type FoodsUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FoodsUncheckedUpdateManyInput = {
-    food_id?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersCreateInput = {
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Users?: UsersCreateNestedOneWithoutOrdersInput
     Foods?: FoodsCreateNestedOneWithoutOrdersInput
   }
@@ -6707,9 +6902,15 @@ export namespace Prisma {
     id?: number
     userId?: number | null
     foodId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OrdersUpdateInput = {
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Users?: UsersUpdateOneWithoutOrdersNestedInput
     Foods?: FoodsUpdateOneWithoutOrdersNestedInput
   }
@@ -6718,22 +6919,33 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     foodId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersCreateManyInput = {
     id?: number
     userId?: number | null
     foodId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OrdersUpdateManyMutationInput = {
-
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     foodId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TABLE_TEMPLATECreateInput = {
@@ -6783,64 +6995,92 @@ export namespace Prisma {
   }
 
   export type UsersCreateInput = {
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Articles?: ArticlesCreateNestedManyWithoutUsersInput
     Orders?: OrdersCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateInput = {
     id?: number
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Articles?: ArticlesUncheckedCreateNestedManyWithoutUsersInput
     Orders?: OrdersUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Articles?: ArticlesUpdateManyWithoutUsersNestedInput
     Orders?: OrdersUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Articles?: ArticlesUncheckedUpdateManyWithoutUsersNestedInput
     Orders?: OrdersUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersCreateManyInput = {
     id?: number
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UsersUpdateManyMutationInput = {
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UsersUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7022,29 +7262,38 @@ export namespace Prisma {
   }
 
   export type FoodsCountOrderByAggregateInput = {
-    food_id?: SortOrder
+    id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type FoodsAvgOrderByAggregateInput = {
-    food_id?: SortOrder
+    id?: SortOrder
   }
 
   export type FoodsMaxOrderByAggregateInput = {
-    food_id?: SortOrder
+    id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type FoodsMinOrderByAggregateInput = {
-    food_id?: SortOrder
+    id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type FoodsSumOrderByAggregateInput = {
-    food_id?: SortOrder
+    id?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -7072,6 +7321,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     foodId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OrdersAvgOrderByAggregateInput = {
@@ -7084,12 +7336,18 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     foodId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OrdersMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     foodId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OrdersSumOrderByAggregateInput = {
@@ -7143,6 +7401,21 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
   export type ArticlesListRelationFilter = {
     every?: ArticlesWhereInput
     some?: ArticlesWhereInput
@@ -7161,10 +7434,14 @@ export namespace Prisma {
 
   export type UsersCountOrderByAggregateInput = {
     id?: SortOrder
-    fullName?: SortOrder
     email?: SortOrder
+    fullName?: SortOrder
     avatar?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UsersAvgOrderByAggregateInput = {
@@ -7173,22 +7450,48 @@ export namespace Prisma {
 
   export type UsersMaxOrderByAggregateInput = {
     id?: SortOrder
-    fullName?: SortOrder
     email?: SortOrder
+    fullName?: SortOrder
     avatar?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UsersMinOrderByAggregateInput = {
     id?: SortOrder
-    fullName?: SortOrder
     email?: SortOrder
+    fullName?: SortOrder
     avatar?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UsersSumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type UsersCreateNestedOneWithoutArticlesInput = {
@@ -7333,6 +7636,10 @@ export namespace Prisma {
     connectOrCreate?: OrdersCreateOrConnectWithoutUsersInput | OrdersCreateOrConnectWithoutUsersInput[]
     createMany?: OrdersCreateManyUsersInputEnvelope
     connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type ArticlesUpdateManyWithoutUsersNestedInput = {
@@ -7538,20 +7845,61 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
   export type UsersCreateWithoutArticlesInput = {
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Orders?: OrdersCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutArticlesInput = {
     id?: number
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Orders?: OrdersUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -7572,29 +7920,43 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutArticlesInput = {
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Orders?: OrdersUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutArticlesInput = {
     id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Orders?: OrdersUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type OrdersCreateWithoutFoodsInput = {
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Users?: UsersCreateNestedOneWithoutOrdersInput
   }
 
   export type OrdersUncheckedCreateWithoutFoodsInput = {
     id?: number
     userId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OrdersCreateOrConnectWithoutFoodsInput = {
@@ -7630,22 +7992,33 @@ export namespace Prisma {
     id?: IntFilter<"Orders"> | number
     userId?: IntNullableFilter<"Orders"> | number | null
     foodId?: IntNullableFilter<"Orders"> | number | null
+    isDeleted?: BoolFilter<"Orders"> | boolean
+    createdAt?: DateTimeFilter<"Orders"> | Date | string
+    updatedAt?: DateTimeFilter<"Orders"> | Date | string
   }
 
   export type UsersCreateWithoutOrdersInput = {
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Articles?: ArticlesCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutOrdersInput = {
     id?: number
+    email: string
     fullName?: string | null
-    email?: string | null
     avatar?: string | null
     password?: string | null
+    googleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Articles?: ArticlesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -7657,12 +8030,18 @@ export namespace Prisma {
   export type FoodsCreateWithoutOrdersInput = {
     name?: string | null
     description?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type FoodsUncheckedCreateWithoutOrdersInput = {
-    food_id?: number
+    id?: number
     name?: string | null
     description?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type FoodsCreateOrConnectWithoutOrdersInput = {
@@ -7682,19 +8061,27 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutOrdersInput = {
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Articles?: ArticlesUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutOrdersInput = {
     id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Articles?: ArticlesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -7712,12 +8099,18 @@ export namespace Prisma {
   export type FoodsUpdateWithoutOrdersInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FoodsUncheckedUpdateWithoutOrdersInput = {
-    food_id?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ArticlesCreateWithoutUsersInput = {
@@ -7752,12 +8145,18 @@ export namespace Prisma {
   }
 
   export type OrdersCreateWithoutUsersInput = {
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Foods?: FoodsCreateNestedOneWithoutOrdersInput
   }
 
   export type OrdersUncheckedCreateWithoutUsersInput = {
     id?: number
     foodId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OrdersCreateOrConnectWithoutUsersInput = {
@@ -7820,20 +8219,32 @@ export namespace Prisma {
   export type OrdersCreateManyFoodsInput = {
     id?: number
     userId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OrdersUpdateWithoutFoodsInput = {
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Users?: UsersUpdateOneWithoutOrdersNestedInput
   }
 
   export type OrdersUncheckedUpdateWithoutFoodsInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersUncheckedUpdateManyWithoutFoodsInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ArticlesCreateManyUsersInput = {
@@ -7850,6 +8261,9 @@ export namespace Prisma {
   export type OrdersCreateManyUsersInput = {
     id?: number
     foodId?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ArticlesUpdateWithoutUsersInput = {
@@ -7885,17 +8299,26 @@ export namespace Prisma {
   }
 
   export type OrdersUpdateWithoutUsersInput = {
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Foods?: FoodsUpdateOneWithoutOrdersNestedInput
   }
 
   export type OrdersUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     foodId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrdersUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     foodId?: NullableIntFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

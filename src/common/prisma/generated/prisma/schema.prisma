@@ -24,18 +24,24 @@ model Articles {
 }
 
 model Foods {
-  food_id     Int      @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String?  @db.VarChar(255)
-  description String?  @default("Chưa có thông tin") @db.VarChar(255)
+  description String?  @db.VarChar(255)
+  isDeleted   Boolean  @default(false)
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @db.Timestamp(0)
   Orders      Orders[]
 }
 
 model Orders {
-  id     Int    @id @default(autoincrement())
-  userId Int?
-  foodId Int?
-  Users  Users? @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
-  Foods  Foods? @relation(fields: [foodId], references: [food_id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  foodId    Int?
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+  Users     Users?   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_1")
+  Foods     Foods?   @relation(fields: [foodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Orders_ibfk_2")
 
   @@index([foodId], map: "foodId")
   @@index([userId], map: "userId")
@@ -49,11 +55,15 @@ model TABLE_TEMPLATE {
 }
 
 model Users {
-  id       Int        @id @default(autoincrement())
-  fullName String?    @db.VarChar(255)
-  email    String?    @db.VarChar(255)
-  avatar   String?    @db.VarChar(255)
-  password String?    @db.VarChar(255)
-  Articles Articles[]
-  Orders   Orders[]
+  id        Int        @id @default(autoincrement())
+  email     String     @unique(map: "email") @db.VarChar(255)
+  fullName  String?    @db.VarChar(255)
+  avatar    String?    @db.VarChar(255)
+  password  String?    @db.VarChar(255)
+  googleId  String?    @db.VarChar(255)
+  isDeleted Boolean    @default(false)
+  createdAt DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt DateTime   @default(now()) @db.Timestamp(0)
+  Articles  Articles[]
+  Orders    Orders[]
 }

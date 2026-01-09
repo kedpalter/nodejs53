@@ -2,12 +2,12 @@ import { responseSuccess } from "../common/helpers/function.helper.js";
 import { authService } from "../services/auth.service.js";
 
 export const authController = {
-    async register(req, res, next) {
+   async register(req, res, next) {
       const result = await authService.register(req);
       const response = responseSuccess(result, `Register auth successfully`);
       res.status(response.statusCode).json(response);
    },
-   
+
    async login(req, res, next) {
       const result = await authService.login(req);
       const response = responseSuccess(result, `Login auth successfully`);
@@ -15,15 +15,25 @@ export const authController = {
    },
 
    async getInfo(req, res, next) {
-      
+
       const result = await authService.getInfo(req);
       const response = responseSuccess(result, `getInfo auth successfully`);
+      res.status(response.statusCode).json(response);
+   },
+   async googleCallback(req, res, next) {
+      const result = await authService.googleCallback(req);
+      res.redirect(result)
+   },
+
+   async create(req, res, next) {
+      const result = await authService.create(req);
+      const response = responseSuccess(result, `Create auth successfully`);
       res.status(response.statusCode).json(response);
    },
 
 
 
-   
+
    // ------------------------------------------
    async findAll(req, res, next) {
       const result = await authService.findAll(req);

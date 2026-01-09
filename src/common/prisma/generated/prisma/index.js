@@ -106,15 +106,21 @@ exports.Prisma.ArticlesScalarFieldEnum = {
 };
 
 exports.Prisma.FoodsScalarFieldEnum = {
-  food_id: 'food_id',
+  id: 'id',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.OrdersScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  foodId: 'foodId'
+  foodId: 'foodId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TABLE_TEMPLATEScalarFieldEnum = {
@@ -126,10 +132,14 @@ exports.Prisma.TABLE_TEMPLATEScalarFieldEnum = {
 
 exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
-  fullName: 'fullName',
   email: 'email',
+  fullName: 'fullName',
   avatar: 'avatar',
-  password: 'password'
+  password: 'password',
+  googleId: 'googleId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -154,10 +164,11 @@ exports.Prisma.FoodsOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.UsersOrderByRelevanceFieldEnum = {
-  fullName: 'fullName',
   email: 'email',
+  fullName: 'fullName',
   avatar: 'avatar',
-  password: 'password'
+  password: 'password',
+  googleId: 'googleId'
 };
 
 
@@ -176,10 +187,10 @@ const config = {
   "clientVersion": "7.0.1",
   "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider     = \"prisma-client-js\"\n  output       = \"../src/common/prisma/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel Articles {\n  id        Int      @id @default(autoincrement())\n  title     String?  @db.VarChar(255)\n  content   String?  @db.Text\n  imageUrl  String?  @db.VarChar(255)\n  views     Int      @default(0)\n  userId    Int\n  isDeleted Boolean  @default(false)\n  createdAt DateTime @default(now()) @db.Timestamp(0)\n  updatedAt DateTime @default(now()) @db.Timestamp(0)\n  Users     Users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"Articles_ibfk_1\")\n\n  @@index([userId], map: \"userId\")\n}\n\nmodel Foods {\n  food_id     Int      @id @default(autoincrement())\n  name        String?  @db.VarChar(255)\n  description String?  @default(\"Chưa có thông tin\") @db.VarChar(255)\n  Orders      Orders[]\n}\n\nmodel Orders {\n  id     Int    @id @default(autoincrement())\n  userId Int?\n  foodId Int?\n  Users  Users? @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"Orders_ibfk_1\")\n  Foods  Foods? @relation(fields: [foodId], references: [food_id], onDelete: NoAction, onUpdate: NoAction, map: \"Orders_ibfk_2\")\n\n  @@index([foodId], map: \"foodId\")\n  @@index([userId], map: \"userId\")\n}\n\nmodel TABLE_TEMPLATE {\n  id        Int      @id @default(autoincrement())\n  isDeleted Boolean  @default(false)\n  createdAt DateTime @default(now()) @db.Timestamp(0)\n  updatedAt DateTime @default(now()) @db.Timestamp(0)\n}\n\nmodel Users {\n  id       Int        @id @default(autoincrement())\n  fullName String?    @db.VarChar(255)\n  email    String?    @db.VarChar(255)\n  avatar   String?    @db.VarChar(255)\n  password String?    @db.VarChar(255)\n  Articles Articles[]\n  Orders   Orders[]\n}\n"
+  "inlineSchema": "generator client {\n  provider     = \"prisma-client-js\"\n  output       = \"../src/common/prisma/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel Articles {\n  id        Int      @id @default(autoincrement())\n  title     String?  @db.VarChar(255)\n  content   String?  @db.Text\n  imageUrl  String?  @db.VarChar(255)\n  views     Int      @default(0)\n  userId    Int\n  isDeleted Boolean  @default(false)\n  createdAt DateTime @default(now()) @db.Timestamp(0)\n  updatedAt DateTime @default(now()) @db.Timestamp(0)\n  Users     Users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"Articles_ibfk_1\")\n\n  @@index([userId], map: \"userId\")\n}\n\nmodel Foods {\n  id          Int      @id @default(autoincrement())\n  name        String?  @db.VarChar(255)\n  description String?  @db.VarChar(255)\n  isDeleted   Boolean  @default(false)\n  createdAt   DateTime @default(now()) @db.Timestamp(0)\n  updatedAt   DateTime @default(now()) @db.Timestamp(0)\n  Orders      Orders[]\n}\n\nmodel Orders {\n  id        Int      @id @default(autoincrement())\n  userId    Int?\n  foodId    Int?\n  isDeleted Boolean  @default(false)\n  createdAt DateTime @default(now()) @db.Timestamp(0)\n  updatedAt DateTime @default(now()) @db.Timestamp(0)\n  Users     Users?   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"Orders_ibfk_1\")\n  Foods     Foods?   @relation(fields: [foodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"Orders_ibfk_2\")\n\n  @@index([foodId], map: \"foodId\")\n  @@index([userId], map: \"userId\")\n}\n\nmodel TABLE_TEMPLATE {\n  id        Int      @id @default(autoincrement())\n  isDeleted Boolean  @default(false)\n  createdAt DateTime @default(now()) @db.Timestamp(0)\n  updatedAt DateTime @default(now()) @db.Timestamp(0)\n}\n\nmodel Users {\n  id        Int        @id @default(autoincrement())\n  email     String     @unique(map: \"email\") @db.VarChar(255)\n  fullName  String?    @db.VarChar(255)\n  avatar    String?    @db.VarChar(255)\n  password  String?    @db.VarChar(255)\n  googleId  String?    @db.VarChar(255)\n  isDeleted Boolean    @default(false)\n  createdAt DateTime   @default(now()) @db.Timestamp(0)\n  updatedAt DateTime   @default(now()) @db.Timestamp(0)\n  Articles  Articles[]\n  Orders    Orders[]\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Articles\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"views\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"Users\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"ArticlesToUsers\"}],\"dbName\":null},\"Foods\":{\"fields\":[{\"name\":\"food_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Orders\",\"kind\":\"object\",\"type\":\"Orders\",\"relationName\":\"FoodsToOrders\"}],\"dbName\":null},\"Orders\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"foodId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"Users\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"OrdersToUsers\"},{\"name\":\"Foods\",\"kind\":\"object\",\"type\":\"Foods\",\"relationName\":\"FoodsToOrders\"}],\"dbName\":null},\"TABLE_TEMPLATE\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"fullName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Articles\",\"kind\":\"object\",\"type\":\"Articles\",\"relationName\":\"ArticlesToUsers\"},{\"name\":\"Orders\",\"kind\":\"object\",\"type\":\"Orders\",\"relationName\":\"OrdersToUsers\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Articles\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"views\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"Users\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"ArticlesToUsers\"}],\"dbName\":null},\"Foods\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"Orders\",\"kind\":\"object\",\"type\":\"Orders\",\"relationName\":\"FoodsToOrders\"}],\"dbName\":null},\"Orders\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"foodId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"Users\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"OrdersToUsers\"},{\"name\":\"Foods\",\"kind\":\"object\",\"type\":\"Foods\",\"relationName\":\"FoodsToOrders\"}],\"dbName\":null},\"TABLE_TEMPLATE\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fullName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"googleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isDeleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"Articles\",\"kind\":\"object\",\"type\":\"Articles\",\"relationName\":\"ArticlesToUsers\"},{\"name\":\"Orders\",\"kind\":\"object\",\"type\":\"Orders\",\"relationName\":\"OrdersToUsers\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
       getRuntime: async () => require('./query_compiler_bg.js'),
