@@ -24,7 +24,11 @@ export const authController = {
       const result = await authService.googleCallback(req);
       res.redirect(result)
    },
-
+   async refreshToken(req, res, next) {
+      const result = await authService.refreshToken(req);
+      const response = responseSuccess(result, `refreshToken auth successfully`);
+      res.status(response.statusCode).json(response);
+   },
    async create(req, res, next) {
       const result = await authService.create(req);
       const response = responseSuccess(result, `Create auth successfully`);

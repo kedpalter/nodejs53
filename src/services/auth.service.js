@@ -1,4 +1,4 @@
-import { BadRequestException } from "../common/helpers/exception.helper.js";
+import { BadRequestException, UnauthorizedException } from "../common/helpers/exception.helper.js";
 import { prisma } from "../common/prisma/connect.prisma.js";
 import bcrypt from "bcrypt"
 import jsonwebtoken from "jsonwebtoken"
@@ -83,6 +83,36 @@ export const authService = {
         // FE dùng hook useSearchParam() để lấy AT và RT
         const urlRedirect = `http://localhost:3000/login-callback?accessToken=${accessToken}&refreshToken=${refreshToken}`;
         return urlRedirect
+    },
+    
+    async refreshToken(req) {
+        const { accessToken, refreshToken } = req.body;
+
+        // Lúc này accessToken đang bị hết hạn nên ko thể verify → bị conflict → verify ignore hết hạn
+        const decodeAccessToken = tokenService.verifyAccessToken(accessToken, { ignoreExpiration: true }) // Gắn option ở đây thay vì trong hàm vì chỉ có chỗ này mới bỏ qua "kiểm tra hết hạn"
+        const decodeRefreshToken = tokenService.verifyRefreshToken(refreshToken)
+
+        if (decodeAccessToken.userId !== decodeRefreshToken.userId) {
+            throw new UnauthorizedException("Refresh Token Invalid");
+        }
+
+        const userExist = await prisma.users.findUnique({
+            where: {
+                id: decodeAccessToken.userId,
+            }
+        });
+        if (!userExist) {
+            throw new UnauthorizedException("Không có người dùng")
+        }
+
+        // Trường hợp trả 1 cặp 2 token, refreshToken sẽ được làm mới (rotate) → Chỉ cần trong 1 ngày người dùng không đăng nhập sẽ bị log out
+        const tokens = tokenService.createTokens(userExist.id)
+
+        // Trường hợp trả 1 token (accessToken). refreshToken không được làm mới: Thời gian giữ đăng nhập sẽ tùy thuộc vào thời gian sống của refreshToken
+
+
+        console.log({ accessToken, refreshToken })
+        return "hello"
     },
 
     async create(req) {

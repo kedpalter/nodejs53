@@ -15,6 +15,8 @@ authRouter.get('/google', passport.authenticate("google", { scope: ["email", "pr
 // Sau khi ng dùng chọn tài khoản và đồng ý với bên GG, passport sẽ lấy code và xử lý với bên google → lấy thông tin gmail → kích hoạt hàm verify ở trong src/common/passport/login-google.passport.js
 authRouter.get('/google-callback', passport.authenticate("google", { failureRedirect: "/login", session: false }), authController.googleCallback)
 
+
+authRouter.post('/refresh-token', authController.refreshToken)
 // Tạo route CRUD
 // authRouter.post('/', authController.create);
 // authRouter.get('/', authController.findAll);
