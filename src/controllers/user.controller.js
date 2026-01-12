@@ -4,6 +4,7 @@ import { userService } from "../services/user.service.js";
 export const userController = {
 
     async avatarLocal(req, res, next) {
+        console.log("tst controller",req.user)
         const result = await userService.avatarLocal(req);
         const response = responseSuccess(result, `avatarLocal user successfully`);
         res.status(response.statusCode).json(response);

@@ -23,13 +23,11 @@ export const protect = async (req, res, next) => {
             id: userId
         }
     })
-    if(!userExist) {
+    if (!userExist) {
         throw new UnauthorizedException("User not found")
     }
 
     console.log({ authorization, type, token, userId, userExist })
-
-
-    console.log('mid protect');
+    req.user = userExist
     next()
 }

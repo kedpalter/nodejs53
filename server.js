@@ -11,6 +11,10 @@ rootRouter
 
 const app = express();
 
+// IMPORTANT: ko thiết lập root static là dấu chấm vì sẽ bị lộ tất cả source code
+app.use(express.static("./public"))
+
+// Parse json để body có dữ liệu
 app.use(express.json()) // Để trước router để express tự động chuyển file JSON body
 app.use(cors({
     origin: ["http://localhost:3000", "https://www.google.com"]
@@ -23,12 +27,12 @@ app.use('/api', rootRouter)
 // Xử lý khi có req từ bên ngoài ko đúng với route
 app.use((req, res, next) => {
     const method = req.method;
-    const url= req.originalUrl;
+    const url = req.originalUrl;
     const ip = req.ip;
     console.log(method, url, ip)
 
     throw new NotFoundException();
-}) 
+})
 app.use(appError)
 
 const port = 3069;

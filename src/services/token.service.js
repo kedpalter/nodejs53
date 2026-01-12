@@ -3,8 +3,8 @@ import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from "../common/constant/ap
 
 export const tokenService = {
     createTokens(userId) {
-        const accessToken = jsonwebtoken.sign({ userId: userId }, ACCESS_TOKEN_SECRET, { expiresIn: "10s" })
-        const refreshToken = jsonwebtoken.sign({ userId: userId }, REFRESH_TOKEN_SECRET, { expiresIn: "1d" })
+        const accessToken = jsonwebtoken.sign({ userId: userId }, ACCESS_TOKEN_SECRET, { expiresIn: "1d" })
+        const refreshToken = jsonwebtoken.sign({ userId: userId }, REFRESH_TOKEN_SECRET, { expiresIn: "2d" })
         // secret or Public key moved to .env
 
         return {
