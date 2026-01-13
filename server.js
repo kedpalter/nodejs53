@@ -1,11 +1,13 @@
 // Module type: edit key "type" in pakage.js
 // const express = require("express") // commonjs (old)
-import express from "express" // module (new)
-import { rootRouter } from "./src/routers/root.router.js";
-import cors from "cors"
-import { appError } from "./src/common/helpers/handle-error.helper.js";
+import cors from "cors";
+import express from "express"; // module (new)
+import { createServer } from "http";
 import { NotFoundException } from "./src/common/helpers/exception.helper.js";
+import { appError } from "./src/common/helpers/handle-error.helper.js";
 import { initGoogleStrategy } from "./src/common/passport/login-google.passport.js";
+import { initSocket } from "./src/common/socket/init.socket.js";
+import { rootRouter } from "./src/routers/root.router.js";
 
 rootRouter
 
@@ -35,8 +37,13 @@ app.use((req, res, next) => {
 })
 app.use(appError)
 
+
+const httpServer = createServer(app);
+initSocket(httpServer)
+
+
 const port = 3069;
-app.listen(port, () => {
+httpServer.listen(port, () => {
     console.log('Server online at:', port)
 })
 
